@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { 
-  User, Briefcase, GraduationCap, Code, Globe, Award, 
+  User, Briefcase, GraduationCap, Code, Globe, 
   Mail, Phone, MapPin, Linkedin, Github, ExternalLink,
-  Download, Star, Zap, Sparkles, ArrowRight, ChevronRight,
+  Download, Star, ArrowRight, ChevronRight,
   Calendar, CheckCircle, TrendingUp, Lightbulb, Rocket,
-  X, Server, Brain, ShieldCheck, FileText, Cpu, Users, Target, MessageSquare, Key, Building,
-  Cloud, Database, Workflow, Layers, Play
+  X, Server, Brain, ShieldCheck, Users, Target, MessageSquare, Key, Building,
+  Cloud, Layers, Play
 } from 'lucide-react'
 
 const Resume = () => {
@@ -1135,7 +1135,7 @@ const Resume = () => {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            {experience.map((job, index) => (
+            {experience.map((job) => (
               <motion.div
                 key={`${job.company}-${job.position}`}
                 variants={itemVariants}
@@ -3079,7 +3079,7 @@ const Resume = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              Ready to get in touch? I'm here to help you with any questions or collaboration opportunities.
+              Ready to get in touch? I&apos;m here to help you with any questions or collaboration opportunities.
             </motion.p>
           </motion.div>
 
@@ -3127,17 +3127,17 @@ const Resume = () => {
                   { icon: Linkedin, color: "from-purple-500 to-pink-500", delay: 0.5, action: () => window.open(`https://${personalInfo.linkedin}`, '_blank') },
                   { icon: Github, color: "from-green-500 to-emerald-500", delay: 1, action: () => window.open(`https://${personalInfo.github}`, '_blank') },
                   { icon: Globe, color: "from-orange-500 to-red-500", delay: 1.5, action: () => window.open(`https://${personalInfo.website}`, '_blank') }
-                ].map((item, index) => (
+                ].map((item, _index) => (
                   <motion.div
-                    key={index}
+                    key={_index}
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: item.delay }}
                     viewport={{ once: true }}
                     className="absolute w-16 h-16 cursor-pointer group"
                     style={{
-                      top: `${Math.cos(index * Math.PI / 2) * 80 + 64}px`,
-                      left: `${Math.sin(index * Math.PI / 2) * 80 + 64}px`,
+                      top: `${Math.cos(_index * Math.PI / 2) * 80 + 64}px`,
+                      left: `${Math.sin(_index * Math.PI / 2) * 80 + 64}px`,
                     }}
                     onClick={item.action}
                   >
@@ -3157,7 +3157,7 @@ const Resume = () => {
                       transition={{
                         duration: 2,
                         repeat: Infinity,
-                        delay: index * 0.5,
+                        delay: _index * 0.5,
                         ease: "easeInOut"
                       }}
                       className="absolute inset-0 border border-purple-300/50 rounded-full"
