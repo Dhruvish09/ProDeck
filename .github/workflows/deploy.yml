@@ -9,6 +9,15 @@ on:
 env:
   NODE_VERSION: '18'
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -43,6 +52,9 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
     - name: Checkout code
@@ -60,16 +72,20 @@ jobs:
     - name: Build application
       run: npm run build
       
-    # Deploy to GitHub Pages
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+    # Deploy to GitHub Pages using official action
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./.next
-        force_orphan: true
-        cname: ${{ secrets.CNAME }} # Optional: Add if you have a custom domain
+        path: ./out
         
-    # Deploy to Vercel (uncomment and configure if using Vercel)
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+      
+    # Alternative: Deploy to Vercel (uncomment if using Vercel)
     # - name: Deploy to Vercel
     #   uses: amondnet/vercel-action@v25
     #   with:
@@ -78,7 +94,7 @@ jobs:
     #     vercel-project-id: ${{ secrets.PROJECT_ID }}
     #     vercel-args: '--prod'
         
-    # Deploy to Netlify (uncomment and configure if using Netlify)
+    # Alternative: Deploy to Netlify (uncomment if using Netlify)
     # - name: Deploy to Netlify
     #   uses: nwtgck/actions-netlify@v2.0
     #   with:
