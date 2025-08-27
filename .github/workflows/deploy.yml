@@ -72,11 +72,26 @@ jobs:
     - name: Build application
       run: npm run build
       
+    # Verify build output exists
+    - name: Verify build output
+      run: |
+        echo "Checking if build output exists..."
+        ls -la
+        if [ -d "out" ]; then
+          echo "✅ Build output directory 'out' found"
+          ls -la out/
+        else
+          echo "❌ Build output directory 'out' not found"
+          exit 1
+        fi
+      
     # Deploy to GitHub Pages using official action
     - name: Setup Pages
       uses: actions/configure-pages@v4
       with:
         enablement: true
+        # The warning about "Get Pages site failed" is normal for first-time setup
+        # This action will create the Pages site if it doesn't exist
       
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
