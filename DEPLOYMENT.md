@@ -7,8 +7,8 @@ This project uses GitHub Actions to automatically deploy your Next.js applicatio
 The GitHub Actions workflow (`.github/workflows/deploy.yml`) automatically:
 
 1. **Tests** your application on every push and pull request
-2. **Builds** the production version
-3. **Deploys** to your chosen platform when changes are pushed to main/master branch
+2. **Builds** the production version with static export
+3. **Deploys** to GitHub Pages when changes are pushed to main/master branch
 
 ## Setup Instructions
 
@@ -16,13 +16,27 @@ The GitHub Actions workflow (`.github/workflows/deploy.yml`) automatically:
 
 GitHub Actions are automatically enabled when you push the workflow file to your repository.
 
-### 2. Configure GitHub Pages (Recommended for static sites)
+### 2. Configure GitHub Pages
 
 1. Go to your repository Settings → Pages
-2. Set Source to "GitHub Actions"
-3. The workflow will automatically deploy to GitHub Pages
+2. Set Source to **"GitHub Actions"**
+3. The workflow will automatically deploy to GitHub Pages using the official GitHub Actions
 
-### 3. Optional: Deploy to Vercel
+### 3. Repository Settings
+
+The workflow now uses the official GitHub Actions for Pages deployment:
+- `actions/configure-pages@v4` - Sets up GitHub Pages
+- `actions/upload-pages-artifact@v3` - Uploads build artifacts
+- `actions/deploy-pages@v4` - Deploys to GitHub Pages
+
+### 4. Next.js Configuration
+
+The project is configured for static export:
+- `output: 'export'` in `next.config.js`
+- Builds to `./out` directory
+- Optimized for GitHub Pages hosting
+
+### 5. Optional: Deploy to Vercel
 
 If you prefer to deploy to Vercel:
 
@@ -32,7 +46,7 @@ If you prefer to deploy to Vercel:
    - `ORG_ID`: Your Vercel organization ID
    - `PROJECT_ID`: Your Vercel project ID
 
-### 4. Optional: Deploy to Netlify
+### 6. Optional: Deploy to Netlify
 
 If you prefer to deploy to Netlify:
 
@@ -40,11 +54,6 @@ If you prefer to deploy to Netlify:
 2. Add these secrets to your repository:
    - `NETLIFY_AUTH_TOKEN`: Your Netlify API token
    - `NETLIFY_SITE_ID`: Your Netlify site ID
-
-### 5. Optional: Custom Domain
-
-If you have a custom domain, add it as a secret:
-- `CNAME`: Your custom domain (e.g., `example.com`)
 
 ## Workflow Details
 
@@ -58,7 +67,8 @@ If you have a custom domain, add it as a secret:
 ### Deploy Job
 - Only runs on main/master branch
 - Requires the test job to pass
-- Deploys to your configured platform(s)
+- Uses official GitHub Actions for Pages deployment
+- Deploys static export from `./out` directory
 
 ## Manual Deployment
 
@@ -74,24 +84,28 @@ If you need to deploy manually:
 ### Common Issues
 
 1. **Build fails**: Check the Actions tab for error details
-2. **Deployment fails**: Verify your secrets are correctly configured
+2. **Deployment fails**: Verify GitHub Pages is set to "GitHub Actions" source
 3. **Page not updating**: GitHub Pages can take a few minutes to update
+4. **Permission errors**: The workflow now uses proper permissions for Pages deployment
 
 ### Checking Status
 
 - View workflow runs in the Actions tab
-- Check deployment status in your platform's dashboard
+- Check deployment status in Settings → Pages
 - Monitor build logs for any errors
+- Look for the green checkmark indicating successful deployment
 
 ## Security Notes
 
 - Never commit sensitive information like API tokens
 - Use GitHub Secrets for all sensitive configuration
+- The workflow uses minimal required permissions
 - Regularly rotate your deployment tokens
 
 ## Support
 
 If you encounter issues:
 1. Check the Actions tab for detailed error logs
-2. Verify your secrets are correctly configured
-3. Ensure your platform-specific setup is complete
+2. Verify your GitHub Pages source is set to "GitHub Actions"
+3. Ensure your repository has the correct permissions
+4. The workflow now uses official GitHub Actions for better reliability
