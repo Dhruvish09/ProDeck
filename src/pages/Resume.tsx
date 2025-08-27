@@ -9,7 +9,7 @@ import {
   Cloud, Layers, Play
 } from 'lucide-react'
 
-const Resume = () => {
+const Profile = () => {
   const [selectedModal, setSelectedModal] = useState<any>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -18,12 +18,12 @@ const Resume = () => {
 
   const personalInfo = {
     name: "Dhruvish Patel",
-    title: "Full Stack Developer & AI Enthusiast",
-    email: "dhruvish.patel@example.com",
-    phone: "+1 (555) 123-4567",
-    location: "San Francisco, CA",
-    linkedin: "linkedin.com/in/dhruvish-patel",
-    github: "github.com/dhruvish-patel",
+    title: "Software Developer & AI Enthusiast",
+    email: "pateldhruvish612000@gmail.com",
+    phone: "+91 6353573222",
+    location: "Ahmedabad, India",
+    linkedin: "www.linkedin.com/in/dhruvish09",
+    github: "github.com/Dhruvish09",
     website: "dhruvish-patel.dev"
   }
 
@@ -60,81 +60,88 @@ const Resume = () => {
 
   const experience = [
     {
-      company: "TechCorp Solutions",
-      position: "Senior Full Stack Developer",
-      duration: "2022 - Present",
-      location: "San Francisco, CA",
+      company: "Weam",
+      position: "Python Developer",
+      duration: "June 2024 - Present",
+      location: "Ahmedabad, Gujarat, India",
       achievements: [
-        "Led development of AI-powered document management system serving 10,000+ users",
-        "Implemented MCP server integration for advanced AI document analysis",
-        "Reduced system response time by 40% through optimization and caching",
-        "Mentored 5 junior developers and conducted code reviews"
+        "Developing Python applications with focus on AI integration",
+        "Working with OpenAI API and Anthropic Claude for AI-powered solutions",
+        "Contributing to full-stack development projects",
+        "Collaborating with cross-functional teams in an on-site environment"
       ]
     },
     {
-      company: "InnovateAI",
-      position: "AI Developer",
-      duration: "2020 - 2022", 
-      location: "Seattle, WA",
+      company: "Zymr, Inc.",
+      position: "Python Developer",
+      duration: "September 2021 - March 2024", 
+      location: "Ahmedabad, Gujarat, India",
       achievements: [
-        "Developed machine learning models for natural language processing",
-        "Built recommendation systems using collaborative filtering",
-        "Integrated OpenAI APIs for intelligent content generation",
-        "Collaborated with data science team on model optimization"
+        "Developed software solutions using Python programming language",
+        "Worked on full-stack development projects",
+        "Collaborated with development teams on various software projects",
+        "Gained extensive experience in software development methodologies"
       ]
     },
     {
-      company: "StartupXYZ",
-      position: "Full Stack Developer",
-      duration: "2018 - 2020",
-      location: "Austin, TX", 
+      company: "Aktiv Software",
+      position: "Odoo Developer",
+      duration: "July 2021 - September 2021",
+      location: "Ahmedabad, Gujarat, India", 
       achievements: [
-        "Built responsive web applications using React and Node.js",
-        "Implemented RESTful APIs and database design",
-        "Deployed applications on AWS and managed CI/CD pipelines",
-        "Worked in agile environment with cross-functional teams"
+        "Worked as Odoo trainee gaining hands-on experience",
+        "Learned Python programming language fundamentals",
+        "Understood software development processes and workflows",
+        "Gained foundational knowledge in ERP system development"
       ]
     }
   ]
 
   const education = [
     {
-      degree: "Master of Science in Computer Science",
-      school: "Stanford University",
-      duration: "2016 - 2018",
-      gpa: "3.9/4.0",
-      relevant: ["Machine Learning", "Artificial Intelligence", "Software Engineering", "Data Structures"]
+      degree: "Bachelor of Engineering - BE, Information Technology",
+      school: "Sardar Patel University (SPU), Vallabh Vidyanagar",
+      duration: "2018 - 2021",
+      gpa: "8.5/10.0",
+      relevant: ["Web Development", "Jinja", "Information Technology", "Software Engineering", "Database Systems", "Computer Networks", "Data Structures", "Algorithms"]
     },
     {
-      degree: "Bachelor of Science in Computer Engineering",
-      school: "University of California, Berkeley",
-      duration: "2012 - 2016", 
-      gpa: "3.8/4.0",
-      relevant: ["Computer Architecture", "Algorithms", "Database Systems", "Web Development"]
+      degree: "Diploma in Information Technology",
+      school: "Government Polytechnic Ahmedabad",
+      duration: "2015 - 2018",
+      gpa: "9.1/10.0",
+      relevant: ["Information Technology", "Programming Fundamentals", "Web Development", "Database Management", "Computer Networks", "Software Engineering", "System Analysis", "Project Management"]
     }
   ]
 
   const projects = [
     {
-      name: "AI Document Organizer",
-      description: "Full-stack AI-powered document management system with MCP integration",
-      tech: ["React", "Node.js", "OpenAI API", "PostgreSQL", "Docker"],
-      link: "github.com/dhruvish-patel/ai-doc-organizer",
-      highlights: ["10,000+ active users", "AI-powered search", "Enterprise security", "Google Drive integration"]
+      name: "WEAM AI Platform",
+      description: "AI-Powered Communication, Agents & Automation Platform - A collaborative AI workspace unifying ChatGPT, Claude, Gemini, and LLaMA for building custom AI agents, prompt libraries, and real-time collaboration across document processing, chat workflows, and SEO tasks.",
+      tech: ["Python", "FastAPI", "OpenAI API", "Anthropic Claude", "Gemini", "Hugging Face", "MongoDB", "Pinecone", "Redis", "AWS S3", "Celery", "Docker", "Prometheus", "Grafana"],
+      link: "weam.ai",
+      highlights: ["Microservices architecture", "Multi-LLM integration", "Real-time collaboration", "Enterprise security", "Scalable backend operations"]
     },
     {
-      name: "Smart Resume Parser",
-      description: "ML-based resume parsing and candidate matching system",
-      tech: ["Python", "TensorFlow", "FastAPI", "React", "MongoDB"],
-      link: "github.com/dhruvish-patel/resume-parser",
-      highlights: ["95% accuracy", "Multi-format support", "Real-time processing", "API-first design"]
+      name: "ZQA (Integrated Project Insights Management)",
+      description: "Project intelligence platform centralizing engineering data from Jira, GitLab, Jenkins, SonarQube, and Zephyr with real-time dashboards for tracking test coverage, deployment health, and delivery velocity.",
+      tech: ["Python", "Flask", "MySQL", "ReactJS", "Jenkins", "Docker", "Jira", "GitLab", "SonarQube"],
+      link: "zqa-platform.com",
+      highlights: ["Real-time analytics", "Multi-source data integration", "DevOps visibility", "Interactive dashboards", "CI/CD pipeline insights"]
     },
     {
-      name: "E-commerce AI Assistant",
-      description: "Conversational AI shopping assistant with product recommendations",
-      tech: ["Next.js", "OpenAI", "Redis", "Stripe API", "Tailwind CSS"],
-      link: "github.com/dhruvish-patel/ai-shopping-assistant", 
-      highlights: ["Natural conversations", "Personalized recommendations", "Multi-language support", "Mobile-first"]
+      name: "Portfolio Builder",
+      description: "Dynamic portfolio builder web platform allowing users to customize sections, upload project content, and showcase skills with modern, interactive UI and responsive design.",
+      tech: ["Python", "Django", "MySQL", "Redis", "Bootstrap", "AWS S3", "Celery", "Docker", "SMTP"],
+      link: "portfolio-builder.com",
+      highlights: ["Dynamic content management", "Custom templates", "AWS S3 integration", "Email verification", "Dockerized deployment"]
+    },
+    {
+      name: "Komplyd",
+      description: "Cloud-native compliance platform for the cannabis industry offering robust API layer and enterprise data platform for regulatory requirements, compliance workflows, and state-by-state operational data management.",
+      tech: ["Python", "Flask", "MySQL", "REST API", "Multi-tenant", "Cloud-native", "Nose testing"],
+      link: "komplyd.com",
+      highlights: ["Regulatory compliance", "Multi-tenant architecture", "Secure REST APIs", "Enterprise data platform", "Cloud scalability"]
     }
   ]
 
@@ -342,7 +349,7 @@ const Resume = () => {
     // For Next.js, we'll use a direct link to the PDF
     const link = document.createElement('a')
     link.href = '/Dhruvish_Resume.pdf'
-    link.download = 'Dhruvish_Patel_Resume.pdf'
+    link.download = 'Dhruvish_Patel_Profile.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -406,7 +413,7 @@ const Resume = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-blue-50 overflow-hidden">
+    <div className="h-full w-full bg-gradient-to-br from-white via-gray-50 to-blue-50 overflow-hidden">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-200/30 rounded-full blur-3xl animate-pulse" />
@@ -3073,14 +3080,7 @@ const Resume = () => {
               Get in Touch
             </motion.h2>
             
-            <motion.p 
-              className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              Ready to get in touch? I&apos;m here to help you with any questions or collaboration opportunities.
-            </motion.p>
+
           </motion.div>
 
           {/* Interactive Contact Flow */}
@@ -3494,7 +3494,7 @@ const Resume = () => {
                 </div>
               </motion.div>
 
-              {/* Download Resume Pill */}
+              {/* Download Profile Pill */}
               <motion.div
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -3528,7 +3528,7 @@ const Resume = () => {
                      >
                        <Download className="h-5 w-5 text-white" />
                      </motion.div>
-                     <span className="text-white font-medium text-sm whitespace-nowrap">Resume</span>
+                     <span className="text-white font-medium text-sm whitespace-nowrap">Profile</span>
                    </div>
                 </div>
               </motion.div>
@@ -3565,16 +3565,144 @@ const Resume = () => {
 
 
 
-      {/* Footer */}
-      <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-200/50 bg-white/50">
-        <div className="max-w-7xl mx-auto text-center">
+      {/* Compact Modern Footer */}
+      <footer className="relative py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-200/50 bg-gradient-to-br from-white via-gray-50 to-blue-50 overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-purple-200/20 rounded-full blur-2xl animate-pulse" />
+          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-blue-200/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }} />
+        </div>
+        
+        {/* Floating Geometric Shapes */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute top-10 left-10 w-8 h-8 border border-purple-300/30 rounded-full"
+          />
+          <motion.div
+            animate={{
+              rotate: [360, 0],
+              scale: [1.1, 1, 1.1],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute top-20 right-16 w-6 h-6 border border-pink-300/30 rounded-full"
+          />
+        </div>
+        
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          {/* Compact Logo Section */}
           <div className="flex items-center justify-center mb-4">
-            <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-3" />
-            <span className="text-xl font-bold text-gray-900">Dhruvish Patel</span>
+            <div className="relative mr-3">
+              {/* Main Logo Container */}
+              <div className="relative w-12 h-12 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-xl transform rotate-2 hover:rotate-0 transition-all duration-500 hover:scale-110">
+                {/* Animated Background Pattern */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-pink-400/20 to-indigo-400/20 rounded-xl" />
+                
+                {/* Central Code Icon */}
+                <div className="relative z-10">
+                  <Code className="w-6 h-6 text-white drop-shadow-lg" />
+                </div>
+                
+                {/* Animated Code Lines - Typing Effect */}
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-0.5">
+                  <div className="w-1 h-1 bg-green-400 rounded-full animate-ping" style={{ animationDuration: '1s', animationDelay: '0s' }} />
+                  <div className="w-1 h-1 bg-green-400 rounded-full animate-ping" style={{ animationDuration: '1s', animationDelay: '0.2s' }} />
+                  <div className="w-1 h-1 bg-green-400 rounded-full animate-ping" style={{ animationDuration: '1s', animationDelay: '0.4s' }} />
+                </div>
+                
+                {/* Corner Brackets */}
+                <div className="absolute top-0 left-0 w-2 h-2 border-l border-t border-white/60 rounded-tl" />
+                <div className="absolute top-0 right-0 w-2 h-2 border-r border-t border-white/60 rounded-tr" />
+                <div className="absolute bottom-0 left-0 w-2 h-2 border-l border-b border-white/60 rounded-bl" />
+                <div className="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-white/60 rounded-br" />
+                
+                {/* Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-400/30 via-pink-400/30 to-indigo-400/30 rounded-xl blur-lg opacity-60" />
+              </div>
+              
+              {/* Animated Code Snippets - Moving Lines */}
+              <div className="absolute -right-2 top-1/2 transform -translate-y-1/2">
+                <div className="w-1 h-3 bg-purple-400 rounded-full animate-bounce" style={{ animationDuration: '1.5s', animationDelay: '0s' }} />
+                <div className="w-1 h-2 bg-pink-400 rounded-full animate-bounce mt-1" style={{ animationDuration: '1.5s', animationDelay: '0.5s' }} />
+                <div className="w-1 h-2.5 bg-indigo-400 rounded-full mt-1" style={{ animationDuration: '1.5s', animationDelay: '1s' }} />
+              </div>
+              
+              {/* Animated Success Ring */}
+              <div className="absolute inset-0 border border-green-400/40 rounded-xl animate-ping" style={{ animationDuration: '2s' }} />
+              
+              {/* Processing/Loading Bubbles */}
+              <div className="absolute -top-1 -left-1">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" style={{ animationDuration: '1s', animationDelay: '0s' }} />
+              </div>
+              <div className="absolute -top-1 -right-1">
+                <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" style={{ animationDuration: '1s', animationDelay: '0.3s' }} />
+              </div>
+              <div className="absolute -bottom-1 -left-1">
+                <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" style={{ animationDuration: '1s', animationDelay: '0.6s' }} />
+              </div>
+              <div className="absolute -bottom-1 -right-1">
+                <div className="w-1.5 h-1.5 bg-pink-400 rounded-full animate-pulse" style={{ animationDuration: '1s', animationDelay: '0.9s' }} />
+              </div>
+              
+              {/* Processing Status Indicator */}
+              <div className="absolute inset-0">
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-green-400 rounded-full animate-ping" style={{ animationDuration: '2s', animationDelay: '0s' }} />
+                <div className="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-blue-400 rounded-full animate-ping" style={{ animationDuration: '2s', animationDelay: '0.5s' }} />
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-1 h-1 bg-purple-400 rounded-full animate-ping" style={{ animationDuration: '2s', animationDelay: '1s' }} />
+                <div className="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-pink-400 rounded-full animate-ping" style={{ animationDuration: '2s', animationDelay: '1.5s' }} />
+              </div>
+            </div>
+            
+            {/* Compact Name with Gradient */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+                Dhruvish Patel
+              </h2>
+            </motion.div>
           </div>
-          <p className="text-gray-600">
-            &copy; 2024 Dhruvish Patel. Full Stack Developer & AI Enthusiast.
-          </p>
+          
+          {/* Compact Copyright with Animation */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-full shadow-lg">
+              <motion.div
+                animate={{
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="w-1.5 h-1.5 bg-green-400 rounded-full"
+              />
+              <span className="text-sm text-gray-700 font-medium">
+                &copy; 2025 Dhruvish Patel. Software Developer & AI Enthusiast.
+              </span>
+            </div>
+          </motion.div>
         </div>
       </footer>
 
@@ -3875,4 +4003,4 @@ const Resume = () => {
   )
 }
 
-export default Resume
+export default Profile
