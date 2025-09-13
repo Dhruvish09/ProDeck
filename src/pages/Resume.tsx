@@ -29,32 +29,36 @@ const Profile = () => {
 
   const skills = [
     {
-      icon: Code,
-      title: 'Frontend Development',
-      description: 'Modern web technologies and frameworks for building responsive user interfaces',
-      gradient: 'from-blue-500 to-cyan-500',
-      skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Framer Motion", "Redux"]
-    },
-    {
       icon: Server,
       title: 'Backend Development',
       description: 'Server-side technologies and database management for scalable applications',
       gradient: 'from-green-500 to-emerald-500',
-      skills: ["Node.js", "Python", "Express.js", "FastAPI", "PostgreSQL", "MongoDB"]
+      skills: ["Python", "FastAPI", "Flask", "Django", "MySQL", "MongoDB"],
+      expertiseLevel: 90
     },
     {
       icon: Brain,
       title: 'AI & Machine Learning',
       description: 'Advanced AI technologies and machine learning frameworks for intelligent solutions',
       gradient: 'from-purple-500 to-pink-500',
-      skills: ["TensorFlow", "PyTorch", "OpenAI API", "LangChain", "NLP", "Computer Vision"]
+      skills: ["GenAI", "Langchain", "Langraph", "MCP SERVER", "OpenAI API", "All GEN MODEL API service builders"],
+      expertiseLevel: 70
     },
     {
       icon: Rocket,
       title: 'DevOps & Cloud',
       description: 'Infrastructure management and cloud deployment for production applications',
       gradient: 'from-orange-500 to-red-500',
-      skills: ["Docker", "Kubernetes", "AWS", "Google Cloud", "CI/CD", "Terraform"]
+      skills: ["AWS", "Docker", "Docker Compose", "Kubernetes", "GitHub Action", "CI/CD"],
+      expertiseLevel: 65
+    },
+    {
+      icon: Code,
+      title: 'Frontend Development',
+      description: 'Modern web technologies and frameworks for building responsive user interfaces',
+      gradient: 'from-blue-500 to-cyan-500',
+      skills: ["HTML", "Bootstrap", "Next.js", "Tailwind CSS"],
+      expertiseLevel: 55
     }
   ]
 
@@ -358,31 +362,112 @@ const Profile = () => {
   const Modal = ({ isOpen, onClose, children }: { isOpen: boolean, onClose: () => void, children: React.ReactNode }) => {
     if (!isOpen) return null
 
+    // Dynamic header configuration based on modal type
+    const getHeaderConfig = (type: string) => {
+      switch (type) {
+        case 'experience':
+          return {
+            gradient: 'from-blue-500 to-indigo-500',
+            icon: Building,
+            title: 'Professional Experience',
+            subtitle: 'Detailed career information',
+            iconBg: 'from-blue-400 to-indigo-400'
+          }
+        case 'project':
+          return {
+            gradient: 'from-slate-500 to-slate-600',
+            icon: Code,
+            title: 'Featured Project',
+            subtitle: 'Project details and technologies',
+            iconBg: 'from-slate-400 to-slate-500'
+          }
+        case 'certification':
+          return {
+            gradient: 'from-purple-500 to-pink-500',
+            icon: ShieldCheck,
+            title: 'Certification',
+            subtitle: 'Professional credentials',
+            iconBg: 'from-purple-400 to-pink-400'
+          }
+        case 'skill':
+          return {
+            gradient: 'from-purple-500 to-pink-500',
+            icon: Code,
+            title: 'Technical Skills',
+            subtitle: 'Expertise and capabilities',
+            iconBg: 'from-purple-400 to-pink-400'
+          }
+        case 'social':
+          return {
+            gradient: 'from-blue-500 to-cyan-500',
+            icon: MessageSquare,
+            title: 'Social Media',
+            subtitle: 'Latest posts and updates',
+            iconBg: 'from-blue-400 to-cyan-400'
+          }
+        default:
+          return {
+            gradient: 'from-purple-500 to-pink-500',
+            icon: Building,
+            title: 'Details',
+            subtitle: 'Additional information',
+            iconBg: 'from-purple-400 to-pink-400'
+          }
+      }
+    }
+
+    const headerConfig = selectedModal ? getHeaderConfig(selectedModal.type) : getHeaderConfig('default')
+    const HeaderIcon = headerConfig.icon
+
     return (
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
         onClick={onClose}
       >
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+          initial={{ scale: 0.7, opacity: 0, y: 50 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.7, opacity: 0, y: 50 }}
+          transition={{ 
+            duration: 0.4, 
+            ease: [0.16, 1, 0.3, 1],
+            type: "spring",
+            stiffness: 300,
+            damping: 30
+          }}
+          className="bg-white/95 backdrop-blur-xl rounded-3xl p-0 max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl shadow-black/25 border border-white/20 mx-2 sm:mx-4 md:mx-0"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-2xl font-bold text-gray-900">Details</h3>
-              <button
+          {/* Dynamic Modal Header with Section-Specific Colors */}
+          <div className={`relative bg-gradient-to-r ${headerConfig.gradient} p-4 sm:p-6 text-white`}>
+            <div className="absolute inset-0 bg-black/10 rounded-t-3xl"></div>
+            <div className="relative flex justify-between items-center">
+              <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${headerConfig.iconBg} backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0`}>
+                  <HeaderIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-lg sm:text-2xl font-bold truncate">{headerConfig.title}</h3>
+                  <p className="text-white/80 text-xs sm:text-sm">{headerConfig.subtitle}</p>
+                </div>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={onClose}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="p-2 sm:p-3 hover:bg-white/20 rounded-2xl transition-all duration-200 group flex-shrink-0 ml-2"
               >
-                <X className="w-6 h-6 text-gray-500" />
-              </button>
+                <X className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-red-200 transition-colors" />
+              </motion.button>
             </div>
+          </div>
+
+          {/* Modal Content */}
+          <div className="p-4 sm:p-6 overflow-y-auto max-h-[calc(90vh-100px)] sm:max-h-[calc(90vh-120px)]">
             {children}
           </div>
         </motion.div>
@@ -945,17 +1030,17 @@ const Profile = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch"
           >
             {skills.map((skillGroup, index) => (
               <motion.div
                 key={skillGroup.title}
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
-                className="group cursor-pointer"
+                className="group cursor-pointer h-full flex"
                 onClick={() => handleCardClick(skillGroup, 'skill')}
               >
-                <div className="relative bg-white/90 backdrop-blur-sm border border-gray-200/50 rounded-3xl p-8 hover:border-purple-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 shadow-lg overflow-hidden group-hover:scale-[1.02]">
+                <div className="relative bg-white/90 backdrop-blur-sm border border-gray-200/50 rounded-3xl p-8 hover:border-purple-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 shadow-lg overflow-hidden group-hover:scale-[1.02] w-full flex flex-col">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   <div className="relative z-10">
@@ -1001,7 +1086,7 @@ const Profile = () => {
                       </div>
                     </div>
                     
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 flex-grow">
                       {skillGroup.skills.map((skill, skillIndex) => (
                         <motion.span
                           key={skill}
@@ -1017,22 +1102,6 @@ const Profile = () => {
                       ))}
                     </div>
                     
-                    {/* Click Indicator */}
-                    <div className="flex items-center justify-end mt-4">
-                      <motion.div
-                        animate={{
-                          x: [0, 3, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                        className="text-purple-500 group-hover:text-purple-600 transition-colors duration-300"
-                      >
-                        <ChevronRight className="h-5 w-5" />
-                      </motion.div>
-                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -3711,66 +3780,174 @@ const Profile = () => {
         {selectedModal && (
           <div>
             {selectedModal.type === 'experience' && (
-              <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">{selectedModal.data.position}</h4>
-                <p className="text-purple-600 font-medium mb-2">{selectedModal.data.company}</p>
-                <div className="flex items-center text-gray-500 text-sm mb-4">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  <span>{selectedModal.data.duration}</span>
-                  <span className="mx-2">•</span>
-                  <span>{selectedModal.data.location}</span>
+              <div className="space-y-4">
+                {/* Compact Company Header */}
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4">
+                  <div className="flex items-center space-x-3 mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+                      <Building className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-xl font-bold text-gray-900 break-words">{selectedModal.data.position}</h4>
+                      <p className="text-lg font-semibold text-purple-600 break-words">{selectedModal.data.company}</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center text-gray-600 text-sm space-y-1 sm:space-y-0 sm:space-x-4">
+                    <div className="flex items-center">
+                      <Calendar className="w-4 h-4 mr-2 flex-shrink-0" />
+                      <span className="font-medium">{selectedModal.data.duration}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
+                      <span className="break-words">{selectedModal.data.location}</span>
+                    </div>
+                  </div>
                 </div>
-                <ul className="space-y-2">
-                  {selectedModal.data.achievements.map((achievement: string, index: number) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
+
+                {/* Compact Achievements */}
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200/50">
+                  <div className="flex items-center space-x-2 mb-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Target className="w-4 h-4 text-white" />
+                    </div>
+                    <h5 className="text-lg font-bold text-gray-900">Key Achievements</h5>
+                  </div>
+                  <div className="space-y-2">
+                    {selectedModal.data.achievements.map((achievement: string, index: number) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.2, delay: index * 0.05 }}
+                        className="flex items-start space-x-2 p-2 bg-white/70 rounded-lg border border-green-200/30"
+                      >
+                        <div className="w-4 h-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <CheckCircle className="w-2.5 h-2.5 text-white" />
+                        </div>
+                        <p className="text-gray-700 text-sm leading-relaxed">{achievement}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Compact Skills */}
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200/50">
+                  <div className="flex items-center space-x-2 mb-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Layers className="w-4 h-4 text-white" />
+                    </div>
+                    <h5 className="text-lg font-bold text-gray-900">Technologies</h5>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {['Python', 'AI/ML', 'Full-Stack', 'APIs', 'DevOps', 'Team Work'].map((skill, index) => (
+                      <motion.span
+                        key={skill}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.2, delay: index * 0.05 }}
+                        className="px-3 py-1 bg-white/70 text-blue-700 text-xs font-semibold rounded-lg border border-blue-200/50 hover:shadow-sm transition-all duration-200"
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
             
             {selectedModal.type === 'project' && (
-              <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">{selectedModal.data.name}</h4>
-                <p className="text-gray-600 mb-4">{selectedModal.data.description}</p>
-                
-                <div className="mb-4">
-                  <h5 className="font-semibold text-gray-800 mb-2">Technologies Used</h5>
+              <div className="space-y-4">
+                {/* Project Header */}
+                <div className="bg-gradient-to-r from-slate-50 to-gray-50 rounded-xl p-4 border border-slate-200/50">
+                  <div className="flex items-start space-x-3 mb-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-slate-500 to-slate-600 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+                      <Code className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-xl font-bold text-gray-900 mb-1 break-words">{selectedModal.data.name}</h4>
+                      <div className="flex items-center space-x-2 text-sm text-gray-600">
+                        <Globe className="w-4 h-4 flex-shrink-0" />
+                        <span className="truncate">{selectedModal.data.link}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 text-sm leading-relaxed">{selectedModal.data.description}</p>
+                </div>
+
+                {/* Technologies Section */}
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200/50">
+                  <div className="flex items-center space-x-2 mb-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Layers className="w-4 h-4 text-white" />
+                    </div>
+                    <h5 className="text-lg font-bold text-gray-900">Technologies Used</h5>
+                  </div>
                   <div className="flex flex-wrap gap-2">
-                    {selectedModal.data.tech.map((tech: string) => (
-                      <span
+                    {selectedModal.data.tech.map((tech: string, index: number) => (
+                      <motion.span
                         key={tech}
-                        className="px-3 py-1 bg-purple-100 text-purple-700 text-sm rounded-full"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.2, delay: index * 0.05 }}
+                        className="px-3 py-1 bg-white/70 text-blue-700 text-xs font-semibold rounded-lg border border-blue-200/50 hover:shadow-sm transition-all duration-200"
                       >
                         {tech}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </div>
-                
-                <div className="mb-4">
-                  <h5 className="font-semibold text-gray-800 mb-2">Key Highlights</h5>
-                  <ul className="space-y-1">
+
+                {/* Key Highlights */}
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200/50">
+                  <div className="flex items-center space-x-2 mb-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Star className="w-4 h-4 text-white" />
+                    </div>
+                    <h5 className="text-lg font-bold text-gray-900">Key Highlights</h5>
+                  </div>
+                  <div className="space-y-2">
                     {selectedModal.data.highlights.map((highlight: string, index: number) => (
-                      <li key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-                        <Star className="w-3 h-3 text-yellow-500 flex-shrink-0" />
-                        <span>{highlight}</span>
-                      </li>
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.2, delay: index * 0.05 }}
+                        className="flex items-start space-x-2 p-2 bg-white/70 rounded-lg border border-green-200/30"
+                      >
+                        <div className="w-4 h-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Star className="w-2.5 h-2.5 text-white" />
+                        </div>
+                        <p className="text-gray-700 text-sm leading-relaxed">{highlight}</p>
+                      </motion.div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
-                
-                <a
-                  href={`https://${selectedModal.data.link}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold"
-                >
-                  <span>View Project</span>
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
+
+                {/* Project Actions */}
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-200/50">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
+                        <Rocket className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <h5 className="text-sm font-bold text-gray-900">Ready to Explore?</h5>
+                        <p className="text-xs text-gray-600">Visit the live project</p>
+                      </div>
+                    </div>
+                    <motion.a
+                      href={`https://${selectedModal.data.link}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-sm font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      <span>View Project</span>
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </motion.a>
+                  </div>
+                </div>
               </div>
             )}
 
@@ -3845,39 +4022,155 @@ const Profile = () => {
                     </div>
                   </div>
                   
-                  <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200/50">
-                    <h5 className="font-semibold text-gray-800 mb-2">Expertise Level</h5>
-                    <div className="flex items-center space-x-2">
-                      <div className="flex-1 bg-gray-200 rounded-full h-2">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: "85%" }}
-                          transition={{ duration: 1, delay: 0.5 }}
-                          className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full"
-                        />
+                  {selectedModal.data.expertiseLevel && (
+                    <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200/50">
+                      <h5 className="font-semibold text-gray-800 mb-2">Expertise Level</h5>
+                      <div className="flex items-center space-x-2">
+                        <div className="flex-1 bg-gray-200 rounded-full h-2">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${selectedModal.data.expertiseLevel}%` }}
+                            transition={{ duration: 1, delay: 0.5 }}
+                            className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full"
+                          />
+                        </div>
+                        <span className="text-sm font-medium text-gray-600">{selectedModal.data.expertiseLevel}%</span>
                       </div>
-                      <span className="text-sm font-medium text-gray-600">85%</span>
+                      <p className="text-sm text-gray-600 mt-2">
+                        Advanced proficiency with hands-on experience in real-world projects
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Advanced proficiency with hands-on experience in real-world projects
-                    </p>
-                  </div>
+                  )}
                   
                   <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200/50">
                     <h5 className="font-semibold text-gray-800 mb-2">Career Impact</h5>
                     <ul className="space-y-2 text-sm text-gray-600">
-                      <li className="flex items-start space-x-2">
-                        <TrendingUp className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span>Enables rapid development of scalable applications</span>
-                      </li>
-                      <li className="flex items-start space-x-2">
-                        <Lightbulb className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span>Drives innovation through cutting-edge technologies</span>
-                      </li>
-                      <li className="flex items-start space-x-2">
-                        <Target className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span>Delivers high-quality, maintainable code solutions</span>
-                      </li>
+                      {(() => {
+                        console.log('Modal title:', selectedModal.data.title);
+                        const title = selectedModal.data.title?.trim();
+                        if (title === 'Backend Development') {
+                          return 'backend';
+                        } else if (title === 'AI & Machine Learning') {
+                          return 'ai';
+                        } else if (title === 'DevOps & Cloud') {
+                          return 'devops';
+                        } else if (title === 'Frontend Development') {
+                          return 'frontend';
+                        }
+                        return 'default';
+                      })() === 'backend' ? (
+                        <>
+                          <li className="flex items-start space-x-2">
+                            <TrendingUp className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Expert in Next.js and Node.js development using Vibecode expertise</span>
+                          </li>
+                          <li className="flex items-start space-x-2">
+                            <Lightbulb className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Builds robust server-side applications with Python frameworks</span>
+                          </li>
+                          <li className="flex items-start space-x-2">
+                            <Target className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Delivers scalable backend solutions with modern architecture</span>
+                          </li>
+                        </>
+                      ) : (() => {
+                        console.log('Modal title:', selectedModal.data.title);
+                        const title = selectedModal.data.title?.trim();
+                        if (title === 'Backend Development') {
+                          return 'backend';
+                        } else if (title === 'AI & Machine Learning') {
+                          return 'ai';
+                        } else if (title === 'DevOps & Cloud') {
+                          return 'devops';
+                        }
+                        return 'default';
+                      })() === 'ai' ? (
+                        <>
+                          <li className="flex items-start space-x-2">
+                            <TrendingUp className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Builds intelligent applications using GenAI and Langchain frameworks</span>
+                          </li>
+                          <li className="flex items-start space-x-2">
+                            <Lightbulb className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Integrates OpenAI API and MCP SERVER for advanced AI capabilities</span>
+                          </li>
+                          <li className="flex items-start space-x-2">
+                            <Target className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Develops custom GEN MODEL API service builders for scalable AI solutions</span>
+                          </li>
+                        </>
+                      ) : (() => {
+                        console.log('Modal title:', selectedModal.data.title);
+                        const title = selectedModal.data.title?.trim();
+                        if (title === 'Backend Development') {
+                          return 'backend';
+                        } else if (title === 'AI & Machine Learning') {
+                          return 'ai';
+                        } else if (title === 'DevOps & Cloud') {
+                          return 'devops';
+                        } else if (title === 'Frontend Development') {
+                          return 'frontend';
+                        }
+                        return 'default';
+                      })() === 'devops' ? (
+                        <>
+                          <li className="flex items-start space-x-2">
+                            <TrendingUp className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Deploys scalable applications on AWS with Docker and Kubernetes orchestration</span>
+                          </li>
+                          <li className="flex items-start space-x-2">
+                            <Lightbulb className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Implements CI/CD pipelines using GitHub Actions for automated deployments</span>
+                          </li>
+                          <li className="flex items-start space-x-2">
+                            <Target className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Ensures high availability and reliability through containerized infrastructure</span>
+                          </li>
+                        </>
+                      ) : (() => {
+                        console.log('Modal title:', selectedModal.data.title);
+                        const title = selectedModal.data.title?.trim();
+                        if (title === 'Backend Development') {
+                          return 'backend';
+                        } else if (title === 'AI & Machine Learning') {
+                          return 'ai';
+                        } else if (title === 'DevOps & Cloud') {
+                          return 'devops';
+                        } else if (title === 'Frontend Development') {
+                          return 'frontend';
+                        }
+                        return 'default';
+                      })() === 'frontend' ? (
+                        <>
+                          <li className="flex items-start space-x-2">
+                            <TrendingUp className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Builds responsive web applications using Next.js and modern HTML5 standards</span>
+                          </li>
+                          <li className="flex items-start space-x-2">
+                            <Lightbulb className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Creates beautiful UIs with Tailwind CSS and Bootstrap for rapid development</span>
+                          </li>
+                          <li className="flex items-start space-x-2">
+                            <Target className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Delivers high-performance, mobile-first user experiences</span>
+                          </li>
+                        </>
+                      ) : (
+                        <>
+                          <li className="flex items-start space-x-2">
+                            <TrendingUp className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Enables rapid development of scalable applications</span>
+                          </li>
+                          <li className="flex items-start space-x-2">
+                            <Lightbulb className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Drives innovation through cutting-edge technologies</span>
+                          </li>
+                          <li className="flex items-start space-x-2">
+                            <Target className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span>Delivers high-quality, maintainable code solutions</span>
+                          </li>
+                        </>
+                      )}
                     </ul>
                   </div>
                 </div>
