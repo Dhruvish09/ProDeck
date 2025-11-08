@@ -2591,22 +2591,6 @@ const Profile = () => {
                       </ul>
                     </div>
                     
-                    <div className="flex items-center justify-between">
-                      <span className="text-blue-600 text-sm font-medium">6 LinkedIn Posts</span>
-                      <motion.div
-                        animate={{
-                          x: [0, 3, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                        className="text-blue-500 group-hover:text-blue-600 transition-colors duration-300"
-                      >
-                        <ArrowRight className="h-5 w-5" />
-                      </motion.div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -2699,22 +2683,6 @@ const Profile = () => {
                       </ul>
                     </div>
                     
-                    <div className="flex items-center justify-between">
-                      <span className="text-red-600 text-sm font-medium">6 YouTube Videos</span>
-                      <motion.div
-                        animate={{
-                          x: [0, 3, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                        className="text-red-500 group-hover:text-red-600 transition-colors duration-300"
-                      >
-                        <ArrowRight className="h-5 w-5" />
-                      </motion.div>
-                    </div>
                   </div>
                 </div>
               </div>
