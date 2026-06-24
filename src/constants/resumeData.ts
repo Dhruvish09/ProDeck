@@ -116,9 +116,21 @@ export const skills: Skill[] = [
 
 export const experience: Experience[] = [
   {
+    company: 'Tata Consultancy Services - TCS',
+    position: 'System Engineer - Generative AI',
+    duration: 'Mar 2026 - Present',
+    location: 'GIFT City, Gandhinagar, Gujarat, India',
+    achievements: [
+      'Working as a Python Developer and System Engineer at TCS, contributing to projects involving Generative AI and application development',
+      'Building and supporting Python-based solutions for automation, data handling, and improving existing workflows',
+      'Gaining hands-on experience with Generative AI concepts such as prompt engineering, model integration, and AI-driven solution development',
+      'Collaborating with the team on development, debugging, and enhancement tasks while understanding real-world software development processes',
+    ],
+  },
+  {
     company: 'Weam',
     position: 'Python Developer',
-    duration: 'June 2024 - Present',
+    duration: 'June 2024 - Feb 2026',
     location: 'Ahmedabad, Gujarat, India',
     achievements: [
       'Developing Python applications with focus on AI integration',
@@ -138,19 +150,7 @@ export const experience: Experience[] = [
       'Collaborated with development teams on various software projects',
       'Gained extensive experience in software development methodologies',
     ],
-  },
-  {
-    company: 'Aktiv Software',
-    position: 'Odoo Developer',
-    duration: 'July 2021 - September 2021',
-    location: 'Ahmedabad, Gujarat, India',
-    achievements: [
-      'Worked as Odoo trainee gaining hands-on experience',
-      'Learned Python programming language fundamentals',
-      'Understood software development processes and workflows',
-      'Gained foundational knowledge in ERP system development',
-    ],
-  },
+  }
 ]
 
 export const education: Education[] = [
@@ -189,6 +189,28 @@ export const education: Education[] = [
 ]
 
 export const projects: Project[] = [
+  {
+    name: 'Bank of America - Intelligent Document Extraction Platform',
+    description: 'A banking document extraction platform focused on automating data extraction, validation, and processing using Python and AI workflows.',
+    tech: [
+      'Python',
+      'MySQL',
+      'OCR Processing',
+      'Image Processing',
+      'Data Extraction',
+      'AI Workflow',
+      'Generative AI',
+      'Document Processing',
+    ],
+    link: '',
+    highlights: [
+      'Automated document data extraction workflows',
+      'Banking-focused validation and processing logic',
+      'Python-based backend development and API integration',
+      'AI-assisted extraction and workflow optimization',
+      'Enterprise application support and enhancement',
+    ],
+  },
   {
     name: 'WEAM AI Platform',
     description:
