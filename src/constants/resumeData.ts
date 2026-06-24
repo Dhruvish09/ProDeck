@@ -190,7 +190,7 @@ export const education: Education[] = [
 
 export const projects: Project[] = [
   {
-    name: 'Bank of America - Intelligent Document Extraction Platform',
+    name: 'BOA - Intelligent Document Extraction Platform',
     description: 'A banking document extraction platform focused on automating data extraction, validation, and processing using Python and AI workflows.',
     tech: [
       'Python',
